@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 
-<?php $page_title = "Dashboard"; ?>
+<?php $page_title = "Admin Dashboard"; ?>
 <?php require '../constant/head.php'; ?>
 
 <body>

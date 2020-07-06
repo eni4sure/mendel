@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 
-<?php $page_title = "Admin Dashboard"; ?>
+<?php $page_title = "Dashboard"; ?>
 <?php require '../constant/head.php'; ?>
 
 <body>
@@ -26,7 +26,19 @@
                 </div>
 
                 <div class="container">
-           
+                	<div class="row">
+           				<div class="col-md-3">
+					      <div class="card-counter primary">
+					        <i class="fa fa-code-fork"></i>
+							<?php
+								$sql = "SELECT * FROM tbl_family WHERE user_id = '".$_SESSION['unique_id']."'";
+								$result = mysqli_query($conn, $sql);
+							?>
+					        <span class="count-numbers"><?php echo mysqli_num_rows($result); ?></span>
+					        <span class="count-name">Family Member(s)</span>
+					      </div>
+					    </div>
+					</div>
 		        </div>
             </main>
         </div>
