@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 
-<?php $page_title = "Dashboard"; ?>
+<?php $page_title = "Admin Dashboard"; ?>
 <?php require '../constant/head.php'; ?>
 
 <body>
@@ -26,16 +26,8 @@
                 </div>
 
                 <div class="container">
-                	<div class="row">
-					    <div class="col-md-3">
-					      <div class="card-counter primary">
-					        <i class="fa fa-code-fork"></i>
-					        <span class="count-numbers">12</span>
-					        <span class="count-name">Family Members</span>
-					      </div>
-					    </div>
-					</div>
-                </div>
+           
+		        </div>
             </main>
         </div>
     </div>

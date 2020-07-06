@@ -39,6 +39,7 @@
                     if (password_verify($password, $row["user_password"])){
 
                         $_SESSION['email'] = $row['user_email'];
+                        $_SESSION['unique_id'] = $row['user_unique_id'];
                         $_SESSION["loggedin"] = true;
                         header("Location:dashboard/index.php");
 

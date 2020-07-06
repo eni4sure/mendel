@@ -68,7 +68,7 @@
             $query = "INSERT INTO `tbl_users` (`user_fname`, `user_lname`, `user_group`, `user_email`, `user_password`, `user_unique_id`) VALUES ( '".$first_name."', '".$last_name."', '".$group."', '".$email."', '".password_hash($password, PASSWORD_DEFAULT)."', '".uniqid()."')";
             $result = mysqli_query($conn,$query);
 
-            print_r( $query );
+            // print_r( $query );
 
             if ($result) {
                

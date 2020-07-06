@@ -3,7 +3,66 @@
 	// Check if the user is logged in, if not then redirect him to login page
 	if( !isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true ){
 	    header("location:../login.php");
-	}
+    }
+    
+    $error = array();
+
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+        if(empty(trim($_POST["first_name"]))){
+
+            $error[] = "Please enter a First Name.";     
+        } else {
+            $first_name = trim($_POST["first_name"]);
+        }
+
+        if(empty(trim($_POST["last_name"]))){
+
+            $error[] = "Please enter a Last Name.";     
+        } else {
+            $last_name = trim($_POST["last_name"]);
+        }
+
+        if(empty(trim($_POST["segment"]))){
+
+            $error[] = "Please select a segment.";     
+        } else {
+            $segment = trim($_POST["segment"]);
+        }
+
+        if(count($error) == 0){
+
+            $sql = "SELECT * FROM tbl_family WHERE user_id = '".$_SESSION['unique_id']."'";
+            $result = mysqli_query($conn, $sql);
+
+            if ($result) {
+
+                if (mysqli_num_rows($result) > 4) {
+
+                    $error[] = "You already have a max of 4 family members added";
+                } else {
+                    
+                    $query = "INSERT INTO `tbl_family` (`family_user_fname`, `family_user_lname`, `family_user_segment`, `user_id`) VALUES ( '".$first_name."', '".$last_name."', '".$segment."', '".$_SESSION['unique_id']."')";
+                    $result = mysqli_query($conn,$query);
+        
+                    // print_r( $query );
+        
+                    if ($result) {
+                       
+                        // Redirect to home page
+                        header("location:./");
+        
+                    } else {
+        
+                        $error[] = "Something went wrong. Please try again later.";
+                    }
+                }
+            } else {
+
+                $error[] = "Connection Error Occurred.";
+            }
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,26 +84,36 @@
                     <h1 class="h2">Add Family Member</h1>
                 </div>
 
+                <?php
+                    if(count($error) != 0){
+                        echo '<div class="col-lg-12 error_list">';
+                        foreach ($error as $value) {
+                            echo "<li>".$value."</li>";
+                        }
+                        echo "</div>";
+                    }
+                ?>
+
                 <form action="" method="POST">
                     
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">First Name</label>
                         <div class="col-sm-10">
-                            <input type="text" required class="form-control" >
+                            <input name="first_name" type="text" required class="form-control" >
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Last Name</label>
                         <div class="col-sm-10">
-                            <input type="text" required class="form-control" >
+                            <input name="last_name" type="text" required class="form-control" >
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Segment</label>
                         <div class="col-sm-10">
-                            <select class="form-control" required>
+                            <select class="form-control" required name="segment">
                                 <option value="" selected disabled>---</option>
                                 <option>White</option>
                                 <option>Black</option>
@@ -54,11 +123,11 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Password</label>
                         <div class="col-sm-10">
-                            <input type="password" required class="form-control" >
+                        <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </div>
+
                 </form>
 
                 <!-- <div class="table-responsive">
