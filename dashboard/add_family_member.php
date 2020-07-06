@@ -25,6 +25,42 @@
                     <h1 class="h2">Add Family Member</h1>
                 </div>
 
+                <form action="" method="POST">
+                    
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">First Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" required class="form-control" >
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Last Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" required class="form-control" >
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Segment</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" required>
+                                <option value="" selected disabled>---</option>
+                                <option>White</option>
+                                <option>Black</option>
+                                <option>No Colour</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Password</label>
+                        <div class="col-sm-10">
+                            <input type="password" required class="form-control" >
+                        </div>
+                    </div>
+                </form>
+
                 <!-- <div class="table-responsive">
                     <table class="table table-striped table-lg">
                         <thead>

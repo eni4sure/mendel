@@ -65,7 +65,7 @@
         
         if(count($error) == 0){
 
-            $query = "INSERT INTO `tbl_users` (`user_fname`, `user_lname`, `user_group`, `user_email`, `user_password`) VALUES ( '".$first_name."', '".$last_name."', '".$group."', '".$email."', '".password_hash($password, PASSWORD_DEFAULT)."')";
+            $query = "INSERT INTO `tbl_users` (`user_fname`, `user_lname`, `user_group`, `user_email`, `user_password`, `user_unique_id`) VALUES ( '".$first_name."', '".$last_name."', '".$group."', '".$email."', '".password_hash($password, PASSWORD_DEFAULT)."', '".uniqid()."')";
             $result = mysqli_query($conn,$query);
 
             print_r( $query );
@@ -124,8 +124,8 @@
                                 <label class="form-control-label">Last Name</label>
                                 <input required type="text" name="last_name" class="form-control auth_bridges">
                             </div>
-                            <select name="group" class="form-control auth_bridges">
-                                <option>Choose a group</option>
+                            <select name="group" class="form-control auth_bridges" required>
+                                <option value="" selected disabled>Choose a group</option>
                                 <option>Cold</option>
                                 <option>Cool</option>
                                 <option>Bold</option>
