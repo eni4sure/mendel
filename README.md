@@ -1,0 +1,2 @@
+# mendel
+A quick project 
